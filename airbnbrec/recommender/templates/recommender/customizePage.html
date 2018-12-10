@@ -1,0 +1,221 @@
+<!-- TODO: 
+HIGH: 
+* How to return rankings
+* Fix undo / dragging and dropping over already-filledangle
+LOW:
+* Consider how to accomodate narrower screen size
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/recommender/customizePage.css">
+  	<link rel="icon" href="favicon.png">
+  	<!-- JS --> 
+	<title>Airbnb Search Extension</title>
+	</head>
+	<body>
+		<div id="backgroundImage">
+			<div id="small">
+				<p id="formTitleSmall"> Rank what's most important to you. </p>
+				<div id="formContainerSmall">
+					<form action="load" method="post">
+						{% csrf_token %}
+						<div id="farleft">
+<!-- 						<div id="farleft" ondrop="drop(event)" ondragover="allowDrop(event)">
+ -->							<span id="diversity" draggable="true" draggable="true" ondragstart="drag(event)">
+								<label for="diversity">Food Diversity</label>
+								<select name="diversity">
+								<option>High</option>
+								<option>No Preference</option>
+								</select>
+							</span>
+							<br />
+							<span id="cuisine" draggable="true" draggable="true" ondragstart="drag(event)">
+								<label for="cuisine">Cuisine Type</label>
+								<select name="cuisine">
+								<option>American (New)</option>
+								<option>American (Traditional)</option>
+								<option>Argentine</option>
+								<option>Asian Fusion</option>
+								<option>Australian</option>
+								<option>Barbeque</option>
+								<option>Basque</option>
+								<option>Brazilian</option>
+								<option>British</option>
+								<option>Bubble Tea</option>
+								<option>Burgers</option>
+								<option>Cajun/Creole</option>
+								<option>Cambodian</option>
+								<option>Cantonese</option>
+								<option>Caribbean</option>
+								<option>Chicken Wings</option>
+								<option>Chinese</option>
+								<option>Colombian</option>
+								<option>Comfort Food</option>
+								<option>Cuban</option>
+								<option>Desserts</option>
+								<option>Dim Sum</option>
+								<option>Dominican</option>
+								<option>Ethiopian</option>
+								<option>Filipino</option>
+								<option>French</option>
+								<option>Georgian</option>
+								<option>German</option>
+								<option>Greek</option>
+								<option>Hot Pot</option>
+								<option>Ice Cream & Frozen Yogurt</option>
+								<option>Indian</option>
+								<option>Indonesian</option>
+								<option>Irish</option>
+								<option>Italian</option>
+								<option>Japanese</option>
+								<option>Korean</option>
+								<option>Laotian</option>
+								<option>Latin American</option>
+								<option>Lebanese</option>
+								<option>Live/Raw Food</option>
+								<option>Malaysian</option>
+								<option>Mediterranean</option>
+								<option>Mexican</option>
+								<option>Middle Eastern</option>
+								<option>Modern European</option>
+								<option>Moroccan</option>
+								<option>New Mexican Cuisine</option>
+								<option>Noodles</option>
+								<option>Pakistani</option>
+								<option>Pan Asian</option>
+								<option>Persian/Iranian</option>
+								<option>Peruvian</option>
+								<option>Pizza</option>
+								<option>Poke</option>
+								<option>Polish</option>
+								<option>Portuguese</option>
+								<option>Ramen</option>
+								<option>Salad</option>
+								<option>Sandwiches</option>
+								<option>Seafood</option>
+								<option>Sicilian</option>
+								<option>Soul Food</option>
+								<option>Soup</option>
+								<option>Southern</option>
+								<option>Spanish</option>
+								<option>Specialty Food</option>
+								<option>Szechuan</option>
+								<option>Tacos</option>
+								<option>Taiwanese</option>
+								<option>Teppanyaki</option>
+								<option>Tex-Mex</option>
+								<option>Thai</option>
+								<option>Turkish</option>
+								<option>Vietnamese</option>
+								<option>No Preference</option>
+								</select>
+							</span>
+							<br />
+							<span id="type" draggable="true" draggable="true" ondragstart="drag(event)">
+								<label for="type">Restaurant Type</label>
+								<select name="type">
+								<option>Bakeries</option>
+								<option>Bars</option>
+								<option>Beer Bar</option>
+								<option>Beer Gardens</option>
+								<option>Beer, Wine & Spirits</option>
+								<option>Brasseries</option>
+								<option>Breakfast & Brunch</option>
+								<option>Buffets</option>
+								<option>Cafes</option>
+								<option>Cocktail Bars</option>
+								<option>Delis</option>
+								<option>Diners</option>
+								<option>Fast Food</option>
+								<option>Food Court</option>
+								<option>Food Stands</option>
+								<option>Gastropubs</option>
+								<option>Grocery</option>
+								<option>Izakaya</option>
+								<option>Jazz & Blues</option>
+								<option>Karaoke</option>
+								<option>Lounges</option>
+								<option>Meat Shops</option>
+								<option>Music Venues</option>
+								<option>Pubs</option>
+								<option>Speakeasies</option>
+								<option>Sports Bars</option>
+								<option>Sushi Bars</option>
+								<option>Tapas/Small Plates</option>
+								<option>Venues & Event Spaces</option>
+								<option>Whiskey Bars</option>
+								<option>Wine Bars</option>
+								<option>No Preference</option>
+								</select>
+							</span>
+							<br />
+							<span id="price" draggable="true" draggable="true" ondragstart="drag(event)">
+								<label for="price">Price</label>
+								<select name="price">
+								<option>$</option>
+								<option>$$</option>
+								<option>$$$</option>
+								<option>$$$$</option>
+								<option>No Preference</option>
+								</select>
+							</span>
+							<br />
+							<span id="diet" draggable="true" draggable="true" ondragstart="drag(event)">
+								<label for="diet">Dietary Preferences</label>
+								<select name="diet">
+								<option>Gluten-Free</option>
+								<option>Halal</option>
+								<option>Vegan</option>
+								<option>Vegetarian</option>
+								<option>No Dietary Preferences</option>
+								</select>
+							</span>
+							<br />
+						</div>
+						<div id="left">
+							<div id="rect1" ondrop="drop(event)" ondragover="allowDrop(event)">1
+						 	</div>
+<!-- 						 	<br />
+ -->						 	<div id="rect2" ondrop="drop(event)" ondragover="allowDrop(event)">2
+						 	</div>
+<!-- 						 	<br />
+ -->						 	<div id="rect3" ondrop="drop(event)" ondragover="allowDrop(event)">3
+						 	</div>
+<!-- 						 	<br />
+ -->						 	<div id="rect4" ondrop="drop(event)" ondragover="allowDrop(event)">4
+						 	</div>
+<!-- 						 	<br />
+ -->						 	<div id="rect5" ondrop="drop(event)" ondragover="allowDrop(event)">5
+						 	</div>
+<!-- 						 	<br />
+ -->					</div>
+ <input type="hidden" id="priority1" name="priority1"/>
+ <input type="hidden" id="priority2" name="priority2"/>
+ <input type="hidden" id="priority3" name="priority3"/>
+ <input type="hidden" id="priority4" name="priority4"/>
+ <input type="hidden" id="priority5" name="priority5"/>
+						<span id="formButtonUnit">
+							<button id="formButtonSmall" type="submit">Find Listing</button>
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	    <!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	    <script src="/static/recommender/customizePage.js"></script>
+ 	</body>
+</html>
