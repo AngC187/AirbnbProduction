@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
 	path('recommender/', include('recommender.urls')),
     path('admin/', admin.site.urls),
+    url(r'^$', 'path.to.function'),
 ]
