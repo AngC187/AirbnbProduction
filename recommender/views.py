@@ -101,7 +101,7 @@ def listing(request):
 	# toplisting=''
 	listings=[]
 	for i in range(len(matches)):
-		allbusinesses= Business.objects.raw("SELECT * FROM Business WHERE 2 * 3961 * asin( sqrt((sin( radians(  (%s - Business.latitude) / 2 ))) ^ 2  + cos(radians(%s)) * cos(radians(Business.latitude)) * (sin( radians((%s - Business.longitude) / 2) ) ) ^ 2) )   < 5", [matches[i].latitude, matches[i].latitude, matches[i].longitude])
+		allbusinesses= Business.objects.raw("SELECT * FROM Business WHERE 2 * 3961 * asin( sqrt((sin( radians(  (%s - Business.latitude) / 2 ))) ^ 2  + cos(radians(%s)) * cos(radians(Business.latitude)) * (sin( radians((%s - Business.longitude) / 2) ) ) ^ 2) )   < 1.5", [matches[i].latitude, matches[i].latitude, matches[i].longitude])
 		# allbusinesses= Business.objects.raw("SELECT * FROM Business sqrt((1545049/324 * SQUARE(%s- Business.latitude))+(620059801/129600*SQUARE( (%s - Business.longitude) * cos( (%s+ Business.latitude)/2 ))) ) < 1", [matches[i].latitude, matches[i].longitude, matches[i].latitude])
 		allbusinesses=list(allbusinesses)
 		businesscount= len(allbusinesses)
