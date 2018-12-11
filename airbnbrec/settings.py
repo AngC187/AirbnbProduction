@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8(f8t)5l@ma@9#&((8%bemj&$esvdt
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dry-ravine-82634.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
