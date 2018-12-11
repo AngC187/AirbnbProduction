@@ -1,1 +1,1 @@
-web: gunicorn recommender.wsgi --log-file -
+web: gunicorn airbnbrec.wsgi --log-file -
