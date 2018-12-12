@@ -66,7 +66,7 @@ conda list
 ```
 
 
-# CREATING AND POPULATING THE DATABASE LOCALLY:
+# Creating and Populating the Database Locally:
 In the psql shell, create the database airbnb using the command
 	CREATE DATABASE airbnb;
 Create the tables for the database using the creating.sql file.
@@ -79,8 +79,14 @@ Make sure the Insert.py files are in the same location as the excel spreadsheets
 First run the listingInsert.py file in the command line using python. Then do the same with calendarInsert.py and businessInsert.py. These may take several minutes to run.
 
 
-# CONNECTING DJANGO TO THE DATABASE
+# Connecting Django to the Database
 Locate the settings.py file in the django project (located in the folder airbnbrec). 
 Scroll down to DATABASES and set the USER and PASSWORD fields to the username and password of the database.
+To run our app, use the following command:
+
+```py
+python manage.py runserver
+```
+
 
 
